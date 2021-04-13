@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,url,amssymb,epsfig,color,xspace,tikz,amsmath, amsthm}
+
+\begin{document}
+    
+\begin{center}
+    \textbf{\huge Tutorial 6}
+\end{center}
+\section{Midterm}
+\begin{itemize}
+    \item Any questions about midterm?
+\end{itemize}
+\section{BST Deletion}
+\begin{itemize}
+    \item Lazy deletion. Add a boolean "zombie" flag to each node 
+    Set to false initially on insertion, set to true on "deletion".
+    \begin{itemize}
+        \item This works OK in short term, or if only few deletes, but
+        performance degrades if tree is full of zombies
+    \end{itemize}
+    \item A better way:
+    \begin{enumerate}
+        \item Target node has no children.
+        \begin{itemize}
+            \item Just delete the target node and send parent ptr to nullptr 
+        \end{itemize}
+        \item Target node has only one child.
+        \begin{itemize}
+            \item Set the target node's parent to point to the only child. And delete thr target node.
+        \end{itemize}
+        \item Target node has two children.
+        \begin{itemize}
+            \item Find the replacement nodes
+            \begin{itemize}
+                \item Biggest key down the left subtree(rightmost key in left subtree), or 
+                \item Smallest key down the right subtree(leftmost key in right subtree)
+            \end{itemize}
+            \item Connect replacement parent's to its only child
+            \item Replace target node with replacement node
+            \begin{itemize}
+                \item Set replacement node's left / right ptrs to values of target's left / right ptrs, respectively
+                \item Set target's parent to point to replacement node
+            \end{itemize}
+            \item Delete target node
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
+
+\section{BST Traversal}
+\begin{itemize}
+    \item Three kinds of traversal:
+    \begin{enumerate}
+        \item Pre-Order
+        \item In-Order
+        \item Post-Order
+    \end{enumerate}
+    \item a trik to traversal a BST
+\end{itemize}
+
+\section{Exercises}
+\begin{enumerate}
+    \item Write a function that prints out the contents of a BST using Pre-Order Traversal. 
+    For simplicity assume the keys are ints.
+    \item Write a function that prints out the contents of a BST using Post-Order Traversal. 
+    For simplicity assume the keys are ints.
+    \item Write a function that determines whether a Binary Tree(assume duplicated values are allowed)
+     is a BST or not, returning true if it is and false otherwise.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,url,amssymb,epsfig,color,xspace,tikz,amsmath, amsthm}
+\usepackage{graphicx}
+\begin{document}
+
+\begin{center}
+    \textbf{\huge Tutorial 2}
+\end{center}
+
+\section{Shell Command Review}
+\begin{itemize}
+    \item \textbf{echo} - display a line of text
+
+    \item \textbf{cd} - change directory
+    \begin{itemize}
+        \item with no directory or \textbf{\~} returns to your home directory
+        \item with \textbf{-} returns to your previous directory
+    \end{itemize}
+
+    \item \textbf{ls} - view files in the current/specified directory
+    \begin{itemize}
+        \item with \textbf{-l} returns a long form listing of the files
+        \item with \textbf{-a} returns all files(including hidden files)
+        \item can combine multiple options, e.g. \textbf{ls -al}
+    \end{itemize}
+
+    \item \textbf{pwd} - print the absolute path to the current directory
+    
+    \item \textbf{mkdir} - create a new directory
+    
+    \item \textbf{cp, mv, rm} - copy, move/rename, remove
+    \begin{itemize}
+        \item with \textbf{-i} asks if you are sure
+        \item with \textbf{-fr} for \textbf{rm} forces the shell to remove a file/directory
+    \end{itemize}
+    
+    \item \textbf{cat/less} - print file contents to the terminal
+    
+    \item \textbf{diff} - compare two files
+    
+    \item \textbf{find} - search for files and directories
+    \begin{itemize}
+        \item with \textbf{name pattern} restricts file names to globbing pattern
+    \end{itemize}
+
+    \item \textbf{chgrp} - change the froup ownership of a file or directory
+    \begin{itemize}
+        \item with \textbf{-R} recursively modifies the group of a directory
+    \end{itemize}
+
+    \item \textbf{chmod} - change permissions of a file
+    \begin{itemize}
+        \item with \textbf{-R} recursively modifies the group of a directory
+        \item \textbf{u} - user
+        \item \textbf{g} - group
+        \item \textbf{o} - other
+        \item \textbf{a} - all
+        \item \textbf{w} - write
+        \item \textbf{r} - read
+        \item \textbf{x} - execute
+        \item \textbf{+} - adds permissions
+        \item \textbf{-} - removes permissions
+    \end{itemize}
+
+    \item \textbf{man} - prints information about commands
+\end{itemize}
+
+\section{Alias}
+Aliases give convenient names to commands you use a lot.\\
+\textbf{Example:} \begin{verbatim}
+    alias mar138="marmoset_submit cs138"
+\end{verbatim} 
+
+\section{Globbing}
+\begin{itemize}
+    \item \textbf{*} - matches 0 or more characters
+    \item \textbf{?} - matches 1 character
+    \item \textbf{\{\dots\}} - matches any alternative in the set
+    \item \textbf{[\dots]} - matches 1 character in the set
+    \item \textbf{[!\dots]} - matches 1 character not in the set
+\end{itemize}
+
+\section{Input/Output redirection}
+\begin{itemize}
+    \item \textbf{$<$} - reads input form a file reather than keyboard
+    \item \textbf{$>, 1>, 2>$} - (over)writes output/error to a file rather than screen
+    \item \textbf{$>>, 1>>, 2>>$} - appends output/error to a file rather than screen
+\end{itemize}
+
+\section{Piplining}
+Pipes allow us to combine commands.\\
+\textbf{Example: }suppose we want to count how many loops in all .cc files in \textbf{\~/cs138/a1} directory.\\
+commands that we will be using:
+\begin{itemize}
+    \item \begin{verbatim} cat ~/cs138/a1/*.cc \end{verbatim} cats all .cc files' contents
+    \item \begin{verbatim} egrep 'for|while' ~/cs138/a1/*.cc \end{verbatim} finds all lines with for or while
+    \item \begin{verbatim} wc -l \end{verbatim} prints the number of lines
+\end{itemize}
+Put them together using pipeline, \begin{verbatim} cat ~/cs138/a1/*.cc | egrep 'for|while' | wc -l \end{verbatim}.\\
+Or simplier, \begin{verbatim} egrep 'for|while' ~/cs138/a1/*.cc | wc -l \end{verbatim}
+
+\section{Types of Quotes}
+\subsection{Double Quotes}
+Protects everything except doublequote, backquote, and \$VARS(suppresses globbing)
+\subsection{Single Quotes}
+Protects everything
+
+\section{Exercise}
+\begin{enumerate}
+    \item Sort all files(including hidden files) lexicographically
+    \item \begin{verbatim}
+        echo *
+        echo '*'
+        echo "*"
+        echo '${HOME}'
+        echo "${HOME}"
+        echo '"${HOME}"'
+        echo "'${HOME}'"
+    \end{verbatim}
+    \item Store all the names of .cc files to assignlist.txt
+    \item Find all .cc and .cpp files in current directory
+\end{enumerate}
+
+\section{Interesting commands}
+\begin{verbatim}
+    cowsay
+    cmatrix 
+\end{verbatim}
+\end{document}
